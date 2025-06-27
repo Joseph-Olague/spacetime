@@ -8,6 +8,7 @@ from PyQt5.QtOpenGL import QGLWidget
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+#Function for sliders
 def add_slider(label_text, min_val, max_val, initial_val, callback, layout):
     row = QHBoxLayout()  
     row.setSpacing(1)
@@ -31,7 +32,7 @@ def add_slider(label_text, min_val, max_val, initial_val, callback, layout):
 
     layout.addLayout(row)
 
-    
+#Function for spinboxes
 def add_spinbox(label_text, min_val, max_val, step, initial_val, callback, layout):
     column = QVBoxLayout()
     label = QLabel(label_text)
@@ -45,7 +46,7 @@ def add_spinbox(label_text, min_val, max_val, step, initial_val, callback, layou
     column.addWidget(spinbox)
     layout.addLayout(column)
 
-
+#This class gives initial values
 class GLWidget(QGLWidget):
     def __init__(self):
         super().__init__()
@@ -67,7 +68,7 @@ class GLWidget(QGLWidget):
         self.radius2 = 15
         self.height = 1e9
 
-    #Makes mass global
+    #Every new variable is created here
     def set_mass(self, val):
         self.mass = val
         
@@ -116,7 +117,7 @@ class GLWidget(QGLWidget):
     def set_test(self,val):
         self.test = val
 
-
+    
     def initializeGL(self):
         glClearColor(0, 0, 0, 1)
         glEnable(GL_DEPTH_TEST)  
@@ -138,7 +139,7 @@ class GLWidget(QGLWidget):
         #gluLookAt(self.zoomX, self.zoomY, 0, 0, 0, 0,  0, 1, 0)
         #gluLookAt(self.set_zoomX, 5000, 0, 0, 0, 0,  0, 1, 0)
         gluLookAt(self.zoomX, self.zoomY, 0, 0, 0, 0,  0, 1, 0)
-        glColor3f(0, 1, 0)
+        glColor3f(0, 1, 0) #Color of lines
         
         # simple 1/r gravity well. Might try to make this with constants. This is just m/r not Gm/r
         #Edit I added G and a mass that makes sense
